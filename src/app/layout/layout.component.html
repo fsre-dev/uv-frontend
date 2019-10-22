@@ -1,0 +1,5 @@
+<app-topnav (toggleEvent)="toggle()"></app-topnav>
+<app-sidebar *ngIf="isSideBarToggled"></app-sidebar>
+<div [className]="isSideBarToggled ? 'main-container' : 'main-container-untoggled'">
+  <router-outlet></router-outlet>
+</div>
