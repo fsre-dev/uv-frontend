@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-topnav',
@@ -10,14 +9,14 @@ export class TopnavComponent implements OnInit {
 
   @Output() toggleEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(public router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
   }
 
   toggle() {
-    this.toggleEvent.emit()
+    this.toggleEvent.emit();
   }
 
 

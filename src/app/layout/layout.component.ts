@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  isSideBarToggled = false;
+  isSideBarToggled = true;
 
   constructor() { }
 
