@@ -9,8 +9,12 @@ export class MemberService {
   constructor(private http: HttpClient) {
   }
 
-  getMembers(page: string, size: string) {
-    const urlParams = new HttpParams().append('page', page).append('size', size);
+  getMembers(page: string, size: string, options?: string, optionsValue?: string) {
+    let urlParams = new HttpParams().append('page', page).append('size', size);
+
+    if (options && optionsValue) {
+      urlParams = urlParams.append(options, optionsValue.trim());
+    }
 
     return this.http.get<any>('api/member/all', {params: urlParams});
   }
