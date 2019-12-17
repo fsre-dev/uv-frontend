@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
 import {MemberService} from './services/member.service';
 import {AuthenticationService} from './services/authentication.service';
 import {MatModule} from './modules/mat/mat.module';
+import { AddMemberComponent } from './member/add-member/add-member.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatModule} from './modules/mat/mat.module';
     TopnavComponent,
     SidebarComponent,
     MemberComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    AddMemberComponent
   ],
   imports: [
     BrowserModule,

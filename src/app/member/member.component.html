@@ -1,9 +1,10 @@
+<div style="width: 100%">
 <mat-form-field>
   <input matInput [(ngModel)]="filterValue" placeholder="Filter">
 
 </mat-form-field>
 <button id="search" mat-raised-button color="primary" (click)="applyFilter(filterValue)">Search</button>
-
+<a id="addMember" [routerLink]="'../addMember'"><button mat-raised-button color="accent">Add</button></a>
 <mat-form-field id="selectFilter">
   <mat-label>Find by</mat-label>
   <mat-select [(ngModel)]="selectedOption">
@@ -12,6 +13,8 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
+</div>
+
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <!-- Position Column -->
@@ -40,10 +43,11 @@
 
   <ng-container matColumnDef="buttons">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary">Edit</button></td>
+    <td mat-cell *matCellDef="let element;"> <button mat-raised-button color="primary">Edit</button></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-paginator [length]="totalElements" [pageSizeOptions]="[10, 25, 50]" (page)="onPageChange()" showFirstLastButtons></mat-paginator>
+

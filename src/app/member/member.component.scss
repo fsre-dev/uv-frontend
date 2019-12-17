@@ -9,8 +9,20 @@ th.mat-sort-header-sorted {
 #selectFilter {
   width: 30%;
   float: right;
+  margin-right: 20px;
 }
 
 #search {
   margin-left: 5px;
+}
+
+#addMember {
+  float: right;
+}
+
+tr button{
+  visibility:hidden;
+}
+tr:hover button{
+  visibility:visible;
 }
