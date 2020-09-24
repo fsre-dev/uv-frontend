@@ -11,11 +11,12 @@ import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {MemberComponent} from './member/member.component';
 import {DocumentsComponent} from './documents/documents.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MemberService} from './services/member.service';
 import {AuthenticationService} from './services/authentication.service';
 import {MatModule} from './modules/mat/mat.module';
 import { AddMemberComponent } from './member/add-member/add-member.component';
+import { EditMemberComponent } from './member/edit-member/edit-member.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AddMemberComponent } from './member/add-member/add-member.component';
     SidebarComponent,
     MemberComponent,
     DocumentsComponent,
-    AddMemberComponent
+    AddMemberComponent,
+    EditMemberComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,9 @@ import { AddMemberComponent } from './member/add-member/add-member.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatModule
+    MatModule,
+    ReactiveFormsModule,
+    AppRoutingModule
 
   ],
   providers: [MemberService, AuthenticationService],

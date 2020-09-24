@@ -1,0 +1,94 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="left">
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input readonly matInput [matDatepicker]="birthDate" placeholder="Birth date" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+        <mat-datepicker #birthDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="City" formControlName="city">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="State" formControlName="state">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Phone number" formControlName="phoneNumber">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cell number" formControlName="cellNumber">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Card number" formControlName="cardNumber">
+      </mat-form-field>
+    </div>
+    <div class="right">
+      <mat-form-field>
+        <input matInput placeholder="Identity card number" formControlName="identityCard">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Passport number" formControlName="passportNumber">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="OIB" formControlName="oib">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Member Type" formControlName="memberType">
+          <mat-option value="SUBSCRIBER">Subscriber</mat-option>
+          <mat-option value="PERMANENT_SUBSCRIBER">Permanent subscriber</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="Male">MALE</mat-radio-button>
+        <mat-radio-button value="Female" style="margin-left: 1%">FEMALE</mat-radio-button>
+      </mat-radio-group>
+      <div class="right" formGroupName="membership">
+        <mat-form-field>
+          <input matInput placeholder="Price" formControlName="price">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="memberFrom" placeholder="Member from" formControlName="memberFrom">
+          <mat-datepicker-toggle matSuffix [for]="memberFrom"></mat-datepicker-toggle>
+          <mat-datepicker #memberFrom></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="memberTo" placeholder="Member to" formControlName="memberTo">
+          <mat-datepicker-toggle matSuffix [for]="memberTo"></mat-datepicker-toggle>
+          <mat-datepicker #memberTo></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-raised-button color="primary" [disabled]="!memberForm.valid">Accept</button>
+          <button type="reset" mat-raised-button color="primary" style="margin-left: 1%">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

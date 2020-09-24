@@ -1,6 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {MatOptionModule, MatPaginatorModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatOptionModule,
+  MatPaginatorModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatTableModule
+} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
@@ -10,7 +18,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-
 
 
 @NgModule({
@@ -31,7 +38,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
-export class MatModule { }
+export class MatModule {
+}

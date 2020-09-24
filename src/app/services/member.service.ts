@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {Member} from '../models/member';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,15 @@ export class MemberService {
     }
 
     return this.http.get<any>('api/member/all', {params: urlParams});
+  }
+
+  getMember(id: string) {
+    const idParams = new HttpParams().append('id', id);
+
+    return this.http.get<Member>('api/member', {params: idParams});
+  }
+
+  postMember(member) {
+    return this.http.post<Member>('api/member', member);
   }
 }

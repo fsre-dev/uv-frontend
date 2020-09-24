@@ -1,3 +1,5 @@
+import {Membership} from './membership';
+
 export interface Member {
   id: number;
   firstName: string;
@@ -6,7 +8,6 @@ export interface Member {
   memberType: string;
   gender: string;
   address: string;
-  zip: string;
   city: string;
   state: string;
   phoneNumber: string;
@@ -16,5 +17,6 @@ export interface Member {
   passportNumber: string;
   identityCard: string;
   oib: string;
+  membership: Membership;
   deleted: boolean;
 }
