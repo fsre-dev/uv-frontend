@@ -53,10 +53,14 @@ export class MemberService {
   }
 
   postTicket(ticket) {
-    return this.http.post<any>('api/ticket/' + ticket.id, ticket);
+    return this.http.post<any>('api/ticket/', ticket);
   }
 
   editTicket(ticket) {
     return this.http.put<any>('api/ticket/' + ticket.id, ticket);
+  }
+
+  deleteTicket(id) {
+    return this.http.delete<any>('api/ticket/' + id);
   }
 }

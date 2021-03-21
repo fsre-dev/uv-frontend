@@ -35,8 +35,10 @@ export class EditTicketComponent implements OnInit {
   }
 
   setTicketForm(ticket: any) {
+    console.log(ticket)
     this.ticketForm = new FormGroup({
-      member: new FormControl(ticket.member.id, Validators.required),
+      id: new FormControl(ticket.id),
+      member: new FormControl({id: ticket.member.id}, Validators.required),
       sector: new FormControl(ticket.sector, [Validators.required]),
       row: new FormControl(ticket.row, [Validators.required]),
       seat: new FormControl(ticket.seat, [Validators.required]),
