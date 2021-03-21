@@ -1,0 +1,42 @@
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="left">
+      <mat-form-field>
+        <input matInput placeholder="Sector" formControlName="sector">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Row" formControlName="row">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Seat" formControlName="seat">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input readonly matInput [matDatepicker]="reservationDate" placeholder="Reservation Date" formControlName="reservationDate">
+        <mat-datepicker-toggle matSuffix [for]="reservationDate"></mat-datepicker-toggle>
+        <mat-datepicker #reservationDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Opponent" formControlName="opponent">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input readonly matInput [matDatepicker]="gameDate" placeholder="Game Date" formControlName="gameDate">
+        <mat-datepicker-toggle matSuffix [for]="gameDate"></mat-datepicker-toggle>
+        <mat-datepicker #gameDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Price" formControlName="price">
+      </mat-form-field>
+      <div>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!ticketForm.valid">Accept</button>
+        <button type="reset" mat-raised-button color="primary" style="margin-left: 1%">Clear</button>
+      </div>
+    </div>
+  </div>
+</form>
+
