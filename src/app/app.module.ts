@@ -17,6 +17,9 @@ import {AuthenticationService} from './services/authentication.service';
 import {MatModule} from './modules/mat/mat.module';
 import { AddMemberComponent } from './member/add-member/add-member.component';
 import { EditMemberComponent } from './member/edit-member/edit-member.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { AddTicketComponent } from './ticket/add-ticket/add-ticket.component';
+import { EditTicketComponent } from './ticket/edit-ticket/edit-ticket.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { EditMemberComponent } from './member/edit-member/edit-member.component'
     MemberComponent,
     DocumentsComponent,
     AddMemberComponent,
-    EditMemberComponent
+    EditMemberComponent,
+    TicketComponent,
+    AddTicketComponent,
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,

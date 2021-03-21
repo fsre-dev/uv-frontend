@@ -11,7 +11,7 @@ export class MemberService {
   }
 
   getMembers(page: string, size: string, options?: string, optionsValue?: string) {
-    let urlParams = new HttpParams().append('page', page).append('size', size);
+    let urlParams = new HttpParams().append('page', page).append('size', size).append('isDeleted', 'false');
 
     if (options && optionsValue) {
       urlParams = urlParams.append(options, optionsValue.trim());
@@ -28,5 +28,35 @@ export class MemberService {
 
   postMember(member) {
     return this.http.post<Member>('api/member', member);
+  }
+
+  editMember(member, id) {
+    return this.http.put<Member>('api/member/' + id, member);
+  }
+
+  deleteMember(memberId) {
+    return this.http.put<Member>(`api/member/delete/` + memberId, null);
+  }
+
+  getTickets(page: string, size: string, options?: string, optionsValue?: string) {
+    let urlParams = new HttpParams().append('page', page).append('size', size);
+
+    if (options && optionsValue) {
+      urlParams = urlParams.append(options, optionsValue.trim());
+    }
+
+    return this.http.get<any>('api/ticket', {params: urlParams});
+  }
+
+  getTicket(id) {
+    return this.http.get<any>('api/ticket/' + id);
+  }
+
+  postTicket(ticket) {
+    return this.http.post<any>('api/ticket/' + ticket.id, ticket);
+  }
+
+  editTicket(ticket) {
+    return this.http.put<any>('api/ticket/' + ticket.id, ticket);
   }
 }

@@ -5,8 +5,8 @@ import {MatPaginator} from '@angular/material';
 import {MemberService} from '../services/member.service';
 
 
-const initPageSize = '10';
-const initPageIndex = '0';
+export const initPageSize = '10';
+export const initPageIndex = '0';
 
 @Component({
   selector: 'app-member',
@@ -18,7 +18,7 @@ export class MemberComponent implements OnInit {
   constructor(private memberService: MemberService) {
   }
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'state', 'city', 'buttons'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'state', 'city', 'edit', 'delete'];
   options = [
     {value: 'firstName', viewValue: 'First Name'},
     {value: 'lastName', viewValue: 'Last Name'},
@@ -37,6 +37,15 @@ export class MemberComponent implements OnInit {
 
   ngOnInit() {
     this.initData();
+  }
+
+  onDelete(id) {
+    this.memberService.deleteMember(id).subscribe(data => {
+      console.log(data);
+      this.initData();
+    }, err => {
+      console.log(err.message);
+    });
   }
 
   applyFilter(searchValue: string) {

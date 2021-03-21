@@ -6,7 +6,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Last Name" formControlName="lastName">
+        <input matInput  placeholder="Last Name" formControlName="lastName">
       </mat-form-field>
 
       <mat-form-field>
@@ -84,6 +84,7 @@
           <mat-datepicker #memberTo></mat-datepicker>
         </mat-form-field>
         <div>
+          <a id="addMember" [routerLink]="'../../addTicket/' + id"><button mat-raised-button color="accent">Add ticket</button></a>
           <button type="submit" mat-raised-button color="primary" [disabled]="!memberForm.valid">Accept</button>
           <button type="reset" mat-raised-button color="primary" style="margin-left: 1%">Clear</button>
         </div>

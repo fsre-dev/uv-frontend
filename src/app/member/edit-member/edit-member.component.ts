@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MemberService} from '../../services/member.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,7 +11,8 @@ import {Member} from '../../models/member';
 })
 export class EditMemberComponent implements OnInit {
 
-  constructor(private memberService: MemberService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private memberService: MemberService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
   id: string;
   memberForm: FormGroup;
@@ -33,11 +34,14 @@ export class EditMemberComponent implements OnInit {
   }
 
   onSubmit() {
-    // napisati
+    this.memberService.editMember(this.memberForm.value, this.id).subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err.message);
+    });
   }
 
-  setMemberForm(member: Member) {
-    this.memberForm = new FormGroup({
+  setMemberForm(member: Member) {this.memberForm = new FormGroup({
       firstName: new FormControl(member.firstName, [Validators.required]),
       lastName: new FormControl(member.lastName, [Validators.required]),
       email: new FormControl(member.email, [Validators.required, Validators.email]),
@@ -53,11 +57,12 @@ export class EditMemberComponent implements OnInit {
       passportNumber: new FormControl(member.passportNumber, [Validators.required]),
       gender: new FormControl(member.gender, [Validators.required]),
       memberType: new FormControl(member.memberType, [Validators.required]),
+      deleted: new FormControl(false),
       membership: new FormGroup({
         memberFrom: new FormControl(member.membership.memberFrom, [Validators.required]),
         memberTo: new FormControl(member.membership.memberTo, [Validators.required]),
         price: new FormControl(member.membership.price, [Validators.required])
-      })
+      }),
     });
   }
 
