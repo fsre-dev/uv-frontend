@@ -19,6 +19,7 @@ import { AddMemberComponent } from './member/add-member/add-member.component';
 import { EditMemberComponent } from './member/edit-member/edit-member.component';
 import { AddTicketComponent } from './ticket/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './ticket/edit-ticket/edit-ticket.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditTicketComponent } from './ticket/edit-ticket/edit-ticket.component'
     AddMemberComponent,
     EditMemberComponent,
     AddTicketComponent,
-    EditTicketComponent
+    EditTicketComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
