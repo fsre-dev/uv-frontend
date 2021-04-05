@@ -8,6 +8,7 @@ import {AddMemberComponent} from './member/add-member/add-member.component';
 import {EditMemberComponent} from './member/edit-member/edit-member.component';
 import {AddTicketComponent} from './ticket/add-ticket/add-ticket.component';
 import {EditTicketComponent} from './ticket/edit-ticket/edit-ticket.component';
+import {TicketComponent} from './ticket/ticket.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path: 'member' , component: MemberComponent},
       {path: 'addMember', component: AddMemberComponent},
       {path: 'editMember/:id', component: EditMemberComponent},
+      {path: 'tickets', component: TicketComponent},
       {path: 'addTicket/:id', component: AddTicketComponent},
       {path: 'editTicket/:id', component: EditTicketComponent},
       {path: 'documents', component: DocumentsComponent}
