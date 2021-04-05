@@ -63,4 +63,26 @@ export class MemberService {
   deleteTicket(id) {
     return this.http.delete<any>('api/ticket/' + id);
   }
+
+  getDocuments(page: string, size: string, options?: string, optionsValue?: string) {
+    let urlParams = new HttpParams().append('page', page).append('size', size).append('isDeleted', 'false');
+
+    if (options && optionsValue) {
+      urlParams = urlParams.append(options, optionsValue.trim());
+    }
+
+    return this.http.get<any>('api/document/all', {params: urlParams});
+  }
+
+  createDocument(document) {
+    return this.http.post<any>('api/document', document)
+  }
+
+  deleteDocument(documentId) {
+    return this.http.put<any>('api/document/delete/' + documentId, null)
+  }
+
+  updateDocument(document) {
+    return this.http.put<any>('api/document/' + document.id, document)
+  }
 }
