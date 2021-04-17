@@ -9,6 +9,7 @@ import {EditMemberComponent} from './member/edit-member/edit-member.component';
 import {AddTicketComponent} from './ticket/add-ticket/add-ticket.component';
 import {EditTicketComponent} from './ticket/edit-ticket/edit-ticket.component';
 import {TicketComponent} from './ticket/ticket.component';
+import {InfoComponent} from './documents/info/info.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
       {path: 'tickets', component: TicketComponent},
       {path: 'addTicket/:id', component: AddTicketComponent},
       {path: 'editTicket/:id', component: EditTicketComponent},
-      {path: 'documents', component: DocumentsComponent}
+      {path: 'documents', component: DocumentsComponent},
+      {path: 'infoDocument/:id', component: InfoComponent}
     ]}
 ];
 

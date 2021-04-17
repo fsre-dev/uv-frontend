@@ -74,6 +74,10 @@ export class MemberService {
     return this.http.get<any>('api/document', {params: urlParams});
   }
 
+  getDocument(documentId) {
+    return this.http.get<any>('api/document/' + documentId);
+  }
+
   createDocument(document) {
     return this.http.post<any>('api/document', document);
   }

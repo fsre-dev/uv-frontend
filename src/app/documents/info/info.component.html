@@ -1,0 +1,33 @@
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="left">
+      <mat-form-field>
+        <input   matInput placeholder="Event" formControlName="event">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input  matInput placeholder="Description" formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input   readonly matInput [matDatepicker]="eventDate" placeholder="Event date" formControlName="eventDate">
+        <mat-datepicker-toggle matSuffix [for]="eventDate"></mat-datepicker-toggle>
+        <mat-datepicker #eventDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field >
+        <input   matInput placeholder="Total Cost" formControlName="totalCost">
+      </mat-form-field>
+
+      <mat-form-field >
+        <input   matInput placeholder="Price per member" formControlName="pricePerMember">
+      </mat-form-field>
+    </div>
+    <div class="right">
+        <div>
+          <button *ngIf="editMode" type="submit" mat-raised-button color="primary" [disabled]="!documentForm.valid">Accept</button>
+          <button mat-raised-button type="button" color="primary" style="margin-left: 1%" (click)="resetForm()">{{editMode ? "Cancel edit" : "Edit document" }}</button>
+        </div>
+      </div>
+  </div>
+</form>

@@ -14,7 +14,7 @@ export class DocumentsComponent implements OnInit {
   constructor(private memberService: MemberService) {
   }
 
-  displayedColumns: string[] = ['event', 'eventDate', 'description', 'totalPrice', 'info', 'edit', 'delete'];
+  displayedColumns: string[] = ['event', 'eventDate', 'description', 'totalPrice', 'info', 'export', 'delete'];
   dataSource;
   totalElements;
 
