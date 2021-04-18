@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
+  MatAutocompleteModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatOptionModule,
@@ -42,6 +43,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatAutocompleteModule
   ]
 })
 export class MatModule {

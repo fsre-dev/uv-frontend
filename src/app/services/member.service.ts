@@ -20,6 +20,10 @@ export class MemberService {
     return this.http.get<any>('api/member/all', {params: urlParams});
   }
 
+  getAllMembers() {
+    return this.http.get<any>('api/member/all');
+  }
+
   getMember(id: string) {
     const idParams = new HttpParams().append('id', id);
 
@@ -86,7 +90,8 @@ export class MemberService {
     return this.http.put<any>('api/document/delete/' + documentId, null);
   }
 
-  updateDocument(document) {
+  updateDocument(document, members) {
+    document.members = members.map(member =>  { return {id: member.id}; })
     return this.http.put<any>('api/document/' + document.id, document);
   }
 }

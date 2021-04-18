@@ -1,14 +1,12 @@
-<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()" *ngIf="documentForm">
   <div class="container">
     <div class="left">
       <mat-form-field>
-        <input   matInput placeholder="Event" formControlName="event">
+        <input  matInput placeholder="Event" formControlName="event">
       </mat-form-field>
-
       <mat-form-field>
         <input  matInput placeholder="Description" formControlName="description">
       </mat-form-field>
-
       <mat-form-field>
         <input   readonly matInput [matDatepicker]="eventDate" placeholder="Event date" formControlName="eventDate">
         <mat-datepicker-toggle matSuffix [for]="eventDate"></mat-datepicker-toggle>
@@ -24,10 +22,49 @@
       </mat-form-field>
     </div>
     <div class="right">
-        <div>
-          <button *ngIf="editMode" type="submit" mat-raised-button color="primary" [disabled]="!documentForm.valid">Accept</button>
-          <button mat-raised-button type="button" color="primary" style="margin-left: 1%" (click)="resetForm()">{{editMode ? "Cancel edit" : "Edit document" }}</button>
-        </div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Members</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Members"
+               matInput
+               [matAutocomplete]="auto"
+        >
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)='addMember($event.option.value)'>
+          <mat-option *ngFor="let member of allMembers" [value]="member" [disabled]="alreadyPicked(member.id)">
+            {{member.firstName + " " + member.lastName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div>
+        <button *ngIf="editMode"  type="submit" mat-raised-button color="primary" [disabled]="!documentForm.valid">Accept</button>
+        <button mat-raised-button type="button" color="primary" style="margin-left: 1%" (click)="resetForm()">{{editMode ? "Cancel edit" : "Edit document" }}</button>
       </div>
+    </div>
   </div>
 </form>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> First Name  </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="identityCard">
+      <th mat-header-cell *matHeaderCellDef> Identity Card </th>
+      <td mat-cell *matCellDef="let element"> {{element.identityCard}} </td>
+    </ng-container>
+    <ng-container matColumnDef="remove">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element;"> <button mat-raised-button color="primary" (click)="removeMember(element.id)">Export</button></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
