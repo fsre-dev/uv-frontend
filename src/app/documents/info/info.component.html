@@ -37,8 +37,8 @@
         </mat-autocomplete>
       </mat-form-field>
       <div>
-        <button *ngIf="editMode"  type="submit" mat-raised-button color="primary" [disabled]="!documentForm.valid">Accept</button>
-        <button mat-raised-button type="button" color="primary" style="margin-left: 1%" (click)="resetForm()">{{editMode ? "Cancel edit" : "Edit document" }}</button>
+        <button *ngIf="editMode === 'INFO' && editToggled"  type="submit" mat-raised-button color="primary" [disabled]="!documentForm.valid">Accept</button>
+        <button *ngIf="editMode === 'INFO'" mat-raised-button type="button" color="primary" style="margin-left: 1%" (click)="resetForm()">{{editToggled ? "Cancel edit" : "Edit document" }}</button>
       </div>
     </div>
   </div>

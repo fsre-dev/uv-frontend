@@ -82,7 +82,8 @@ export class MemberService {
     return this.http.get<any>('api/document/' + documentId);
   }
 
-  createDocument(document) {
+  createDocument(document, members) {
+    document.members = members.map(member => { return {id: member.id}; })
     return this.http.post<any>('api/document', document);
   }
 

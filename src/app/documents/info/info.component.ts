@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MemberService} from '../../services/member.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatPaginator} from '@angular/material';
 import {MatTableDataSource} from '@angular/material/table';
+import { ThrowStmt } from '@angular/compiler';
 
+export type EditMode = "CREATE" | "INFO"
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -12,9 +14,14 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class InfoComponent implements OnInit {
 
-  constructor(private memberService: MemberService,  private activatedRoute: ActivatedRoute) { }
+  editMode: EditMode
 
-  editMode = false
+  constructor(private memberService: MemberService,  private activatedRoute: ActivatedRoute, private router: Router) {
+    this.editMode = this.router.url.indexOf("create") > -1 ? "CREATE" : "INFO"
+    this.editToggled = this.router.url.indexOf("create") > -1 ? true : false
+   }
+
+  editToggled: boolean
   documentForm: FormGroup
   members
   allMembers
@@ -26,12 +33,21 @@ export class InfoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   onSubmit() {
+    if(this.editMode === "INFO")  {
     this.memberService.updateDocument(this.documentForm.value, this.members).subscribe(data => {
       console.log(data);
       this.initDocument = data;
     }, error => {
       console.log(error.message);
     });
+  } else {
+    this.memberService.createDocument(this.documentForm.value, this.members).subscribe(data => {
+      console.log(data)
+      this.resetForm()
+    }, error => {
+      console.log(error.message)
+    })
+  }
   }
 
   addMember(member) {
@@ -57,6 +73,7 @@ export class InfoComponent implements OnInit {
       this.allMembers = data;
     }, null, () => {
     });
+    if(this.editMode === "INFO") {
     this.activatedRoute.params.subscribe(params => {
       this.memberService.getDocument(+params.id).subscribe(dataDoc => {
         if (dataDoc) {
@@ -70,9 +87,13 @@ export class InfoComponent implements OnInit {
         }
       });
     });
+  } else {
+    this.resetForm()
+  }
   }
 
   setDocumentForm(document: any) {
+    if(this.editMode === "INFO") {
     this.documentForm = new FormGroup({
       id: new FormControl({value: document.id, disabled: !this.editMode}),
       event: new FormControl({value: document.event, disabled: !this.editMode}, [Validators.required]),
@@ -83,9 +104,11 @@ export class InfoComponent implements OnInit {
       deleted: new FormControl(false)
     });
   }
+  }
 
   resetForm()  {
-    this.editMode = !this.editMode;
+    if(this.editMode === "INFO") {
+    this.editToggled = !this.editToggled
     this.documentForm = new FormGroup({
         id: new FormControl({value: this.initDocument.id, disabled: !this.editMode}),
         event: new FormControl({value: this.initDocument.event, disabled: !this.editMode}, [Validators.required]),
@@ -95,5 +118,16 @@ export class InfoComponent implements OnInit {
         pricePerMember: new FormControl({value: this.initDocument.pricePerMember, disabled: !this.editMode}, [Validators.required]),
         deleted: new FormControl(false)
       });
+    } else {
+      this.documentForm = new FormGroup({
+        id: new FormControl({value: "", disabled: !this.editMode}),
+        event: new FormControl({value: "", disabled: !this.editMode}, [Validators.required]),
+        description: new FormControl({value: "", disabled: !this.editMode}, [Validators.required]),
+        eventDate: new FormControl({value: "", disabled: !this.editMode}, [Validators.required]),
+        totalCost: new FormControl({value: "", disabled: !this.editMode}, [Validators.required]),
+        pricePerMember: new FormControl({value: "", disabled: !this.editMode}, [Validators.required]),
+        deleted: new FormControl(false)
+    });
   }
+}
 }
