@@ -92,7 +92,11 @@ export class MemberService {
   }
 
   updateDocument(document, members) {
-    document.members = members.map(member =>  { return {id: member.id}; })
+    document.members = members.map(member =>  { return {id: member.id}; });
     return this.http.put<any>('api/document/' + document.id, document);
+  }
+
+  exportDocument(documentId) {
+    return this.http.get<any>('api/document/export/' + documentId, {responseType: 'blob'});
   }
 }

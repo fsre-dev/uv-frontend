@@ -3,6 +3,10 @@ import {MemberService} from '../services/member.service';
 import {initPageIndex, initPageSize} from '../member/member.component';
 import {MatPaginator, MatSort} from '@angular/material';
 import {MatTableDataSource} from '@angular/material/table';
+import * as FileSaver from "file-saver";
+
+
+
 
 @Component({
   selector: 'app-documents',
@@ -33,6 +37,20 @@ export class DocumentsComponent implements OnInit {
       console.log(err.message);
     });
   }
+
+  downloadFile(data) {
+    const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+    FileSaver.saveAs(blob, 'document.xlsx');
+  }
+
+  onExport(id) {
+    this.memberService.exportDocument(id).subscribe(data => {
+      this.downloadFile(data);
+    }, err => {
+      console.log(err.message);
+    });
+  }
+
 
   onPageChange() {
     this.memberService.getDocuments(this.paginator.pageIndex.toString(), this.paginator.pageSize.toString()).subscribe(data => {
