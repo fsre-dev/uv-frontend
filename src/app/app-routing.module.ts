@@ -23,7 +23,8 @@ const routes: Routes = [
       {path: 'addTicket/:id', component: AddTicketComponent},
       {path: 'editTicket/:id', component: EditTicketComponent},
       {path: 'documents', component: DocumentsComponent},
-      {path: 'infoDocument/:id', component: InfoComponent}
+      {path: 'infoDocument/:id', component: InfoComponent},
+      {path: 'createDocument', component: InfoComponent}
     ]}
 ];
 

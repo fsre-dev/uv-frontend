@@ -16,4 +16,8 @@ export class AuthenticationService {
       }
     });
   }
+
+  logout() {
+    return this.http.get<any>('/api/logout');
+  }
 }

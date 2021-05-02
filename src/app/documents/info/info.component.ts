@@ -22,6 +22,11 @@ export class InfoComponent implements OnInit {
    }
 
   editToggled: boolean
+  events: [{value: 'TRIP', viewValue: 'TRIP'},
+    {value: 'HOME_GAME', viewValue: 'HOME_GAME'},
+    {value: 'AWAY_GAME', viewValue: 'AWAY_GAME'},
+    {value: 'EVENT_ANNIVERSARY', viewValue: 'EVENT_ANNIVERSARY'},
+    {value: 'OTHER', viewValue: 'OTHER'}]
   documentForm: FormGroup
   members
   allMembers
@@ -65,7 +70,12 @@ export class InfoComponent implements OnInit {
   }
 
   alreadyPicked(id) {
-    return this.members.map(data => data.id).indexOf(id) > -1;
+    return this.members ? this.members.map(data => data.id).indexOf(id) > -1 : false;
+  }
+
+  displayFn(member) {
+    return null
+    return member ? member.firstName + ' ' + member.lastName : '';
   }
 
   ngOnInit() {
@@ -73,7 +83,7 @@ export class InfoComponent implements OnInit {
       this.allMembers = data;
     }, null, () => {
     });
-    if(this.editMode === "INFO") {
+    if (this.editMode === 'INFO') {
     this.activatedRoute.params.subscribe(params => {
       this.memberService.getDocument(+params.id).subscribe(dataDoc => {
         if (dataDoc) {
@@ -88,7 +98,8 @@ export class InfoComponent implements OnInit {
       });
     });
   } else {
-    this.resetForm()
+      this.members = [];
+      this.resetForm();
   }
   }
 

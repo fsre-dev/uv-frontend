@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe(data => {
       this.router.navigate(['main']);
+      localStorage.setItem('user', JSON.stringify(data));
     }, error => {
       console.log(error.message);
       console.log(error.status);
     });
   }
-
 }

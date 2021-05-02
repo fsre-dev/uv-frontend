@@ -43,7 +43,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ]
 })
 export class MatModule {

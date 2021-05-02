@@ -97,6 +97,6 @@ export class MemberService {
   }
 
   exportDocument(documentId) {
-    return this.http.get<any>('api/document/export/' + documentId, {responseType: 'blob'});
+    return this.http.get<any>('api/document/export/' + documentId, { responseType: 'blob' as 'json', });
   }
 }

@@ -12,8 +12,8 @@
     <a mat-list-item [routerLink]="['documents']">
       <mat-icon class="sidenav-icon">Documents</mat-icon>
     </a>
-    <a mat-list-item>
-      <mat-icon class="sidenav-icon">Help</mat-icon>
+    <a *ngIf="userIsAdmin()" mat-list-item>
+      <mat-icon class="sidenav-icon">Users</mat-icon>
     </a>
   </mat-nav-list>
 </div>

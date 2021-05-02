@@ -47,8 +47,6 @@ import { InfoComponent } from './documents/info/info.component';
     BrowserAnimationsModule,
     MatModule,
     ReactiveFormsModule,
-    AppRoutingModule
-
   ],
   providers: [MemberService, AuthenticationService],
   bootstrap: [AppComponent]
