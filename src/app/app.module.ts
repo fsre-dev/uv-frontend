@@ -21,6 +21,10 @@ import { AddTicketComponent } from './ticket/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './ticket/edit-ticket/edit-ticket.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { InfoComponent } from './documents/info/info.component';
+import {UserGuard} from './user.guard';
+import {AdminGuard} from './admin.guard';
+import { UserComponent } from './user/user/user.component';
+import { AddOrEditComponent } from './user/add-or-edit/add-or-edit.component';
 
 
 @NgModule({
@@ -37,7 +41,9 @@ import { InfoComponent } from './documents/info/info.component';
     AddTicketComponent,
     EditTicketComponent,
     TicketComponent,
-    InfoComponent
+    InfoComponent,
+    UserComponent,
+    AddOrEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ import { InfoComponent } from './documents/info/info.component';
     MatModule,
     ReactiveFormsModule,
   ],
-  providers: [MemberService, AuthenticationService],
+  providers: [MemberService, AuthenticationService, UserGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

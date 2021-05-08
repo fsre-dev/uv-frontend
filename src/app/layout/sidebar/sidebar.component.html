@@ -12,7 +12,7 @@
     <a mat-list-item [routerLink]="['documents']">
       <mat-icon class="sidenav-icon">Documents</mat-icon>
     </a>
-    <a *ngIf="userIsAdmin()" mat-list-item>
+    <a *ngIf="userIsAdmin()" [routerLink]="['users']" mat-list-item>
       <mat-icon class="sidenav-icon">Users</mat-icon>
     </a>
   </mat-nav-list>

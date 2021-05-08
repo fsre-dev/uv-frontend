@@ -99,4 +99,30 @@ export class MemberService {
   exportDocument(documentId) {
     return this.http.get<any>('api/document/export/' + documentId, { responseType: 'blob' as 'json', });
   }
+
+  getUsers(page: string, size: string, options?: string, optionsValue?: string) {
+    let urlParams = new HttpParams().append('page', page).append('size', size).append('isDeleted', 'false');
+
+    if (options && optionsValue) {
+      urlParams = urlParams.append(options, optionsValue.trim());
+    }
+
+    return this.http.get<any>('api/user/all', {params: urlParams});
+  }
+
+  getUser(userId) {
+    return this.http.get<any>('api/user/' + userId);
+  }
+
+  createUser(user) {
+    return this.http.post<any>('api/user/superadmin/create', user);
+  }
+
+  deleteUser(userId) {
+    return this.http.put<any>('api/user/delete/' + userId, null);
+  }
+
+  updateUser(user) {
+    return this.http.put<any>('api/user/superadmin/' + user.id, user);
+  }
 }

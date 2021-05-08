@@ -10,21 +10,25 @@ import {AddTicketComponent} from './ticket/add-ticket/add-ticket.component';
 import {EditTicketComponent} from './ticket/edit-ticket/edit-ticket.component';
 import {TicketComponent} from './ticket/ticket.component';
 import {InfoComponent} from './documents/info/info.component';
+import {UserGuard} from './user.guard';
+import {UserComponent} from './user/user/user.component';
+import {AdminGuard} from './admin.guard';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   { path: 'main', component: LayoutComponent, children: [
-      {path: 'member' , component: MemberComponent},
-      {path: 'addMember', component: AddMemberComponent},
-      {path: 'editMember/:id', component: EditMemberComponent},
-      {path: 'tickets', component: TicketComponent},
-      {path: 'addTicket/:id', component: AddTicketComponent},
-      {path: 'editTicket/:id', component: EditTicketComponent},
-      {path: 'documents', component: DocumentsComponent},
-      {path: 'infoDocument/:id', component: InfoComponent},
-      {path: 'createDocument', component: InfoComponent}
+      {path: 'member' , component: MemberComponent, canActivate: [UserGuard]},
+      {path: 'addMember', component: AddMemberComponent, canActivate: [UserGuard]},
+      {path: 'editMember/:id', component: EditMemberComponent, canActivate: [UserGuard]},
+      {path: 'tickets', component: TicketComponent, canActivate: [UserGuard]},
+      {path: 'addTicket/:id', component: AddTicketComponent, canActivate: [UserGuard]},
+      {path: 'editTicket/:id', component: EditTicketComponent, canActivate: [UserGuard]},
+      {path: 'documents', component: DocumentsComponent, canActivate: [UserGuard]},
+      {path: 'infoDocument/:id', component: InfoComponent, canActivate: [UserGuard]},
+      {path: 'createDocument', component: InfoComponent, canActivate: [UserGuard]},
+      {path: 'users', component: UserComponent, canActivate: [AdminGuard]}
     ]}
 ];
 
