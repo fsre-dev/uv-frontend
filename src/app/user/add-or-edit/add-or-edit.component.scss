@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width:45%;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width:45%;
+}
+
+.mat-table {
+  width: 100%
+}
+

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="fix-nav">
   <div class="nav-brand">
-    SB Admin Material
+    {{loggedUser != null ? "Welcome   " + loggedUser.username : ""}}
   </div>
   <span class="nav-spacer"></span>
   <button mat-icon-button  [ngStyle]="{'margin-right': '20px'}" (click)="logout()">

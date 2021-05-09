@@ -4,9 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatPaginator} from '@angular/material';
 import {MatTableDataSource} from '@angular/material/table';
-import { ThrowStmt } from '@angular/compiler';
 
-export type EditMode = "CREATE" | "INFO"
+export type EditMode = "CREATE" | "INFO" | "EDIT"
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',

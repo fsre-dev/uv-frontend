@@ -119,7 +119,7 @@ export class MemberService {
   }
 
   deleteUser(userId) {
-    return this.http.put<any>('api/user/delete/' + userId, null);
+    return this.http.put<any>('api/user/superadmin/delete/' + userId, null);
   }
 
   updateUser(user) {

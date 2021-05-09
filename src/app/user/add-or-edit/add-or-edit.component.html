@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="userForm">
+  <div class="container">
+    <div class="left">
+      <mat-form-field appearance="fill">
+        <mat-label>Roles</mat-label>
+        <select matNativeControl formControlName="role" required>
+          <option value="ROLE_SUPER_ADMIN">SUPER ADMIN</option>
+          <option value="ROLE_ADMIN">ADMIN</option>
+          <option value="ROLE_NORMAL">NORMAL</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field>
+        <input  matInput placeholder="Username" formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input  matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
+      <mat-form-field >
+        <input   matInput placeholder="E-mail" formControlName="email">
+      </mat-form-field>
+    </div>
+    <div class="right">
+      <div>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">Accept</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+

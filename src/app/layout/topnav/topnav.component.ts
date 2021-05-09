@@ -10,12 +10,15 @@ import {Router} from '@angular/router';
 export class TopnavComponent implements OnInit {
 
   @Output() toggleEvent: EventEmitter<any> = new EventEmitter<any>();
+  loggedUser
 
   constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
+    this.loggedUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
   }
+
 
   toggle() {
     this.toggleEvent.emit();

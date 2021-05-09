@@ -13,6 +13,7 @@ import {InfoComponent} from './documents/info/info.component';
 import {UserGuard} from './user.guard';
 import {UserComponent} from './user/user/user.component';
 import {AdminGuard} from './admin.guard';
+import {AddOrEditComponent} from './user/add-or-edit/add-or-edit.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,9 @@ const routes: Routes = [
       {path: 'documents', component: DocumentsComponent, canActivate: [UserGuard]},
       {path: 'infoDocument/:id', component: InfoComponent, canActivate: [UserGuard]},
       {path: 'createDocument', component: InfoComponent, canActivate: [UserGuard]},
-      {path: 'users', component: UserComponent, canActivate: [AdminGuard]}
+      {path: 'users', component: UserComponent, canActivate: [AdminGuard]},
+      {path: 'users/createUser', component: AddOrEditComponent, canActivate: [AdminGuard]},
+      {path: 'users/editUser/:id', component: AddOrEditComponent, canActivate: [AdminGuard]}
     ]}
 ];
 
