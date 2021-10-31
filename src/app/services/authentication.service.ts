@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { baseURL } from './member.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-   return this.http.post<any>('/api/user/authenticate', null, {
+   return this.http.post<any>( baseURL + '/api/user/authenticate', null, {
       headers: {
         authorization: 'Basic ' + btoa(username + ':' + password)
       }
@@ -18,6 +19,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.http.get<any>('/api/logout');
+    return this.http.get<any>(baseURL + '/api/logout');
   }
 }

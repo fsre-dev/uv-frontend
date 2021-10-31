@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://uvijek-vjerni.herokuapp.com",
+    "target": "http://localhost:4200",
     "secure": false,
     "changeOrigin": true
 
