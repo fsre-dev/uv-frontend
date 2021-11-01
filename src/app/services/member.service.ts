@@ -12,6 +12,8 @@ export class MemberService {
   constructor(private http: HttpClient) {
   }
 
+  token = localStorage.getItem("token")
+
   getMembers(page: string, size: string, options?: string, optionsValue?: string) {
     let urlParams = new HttpParams().append('page', page).append('size', size).append('isDeleted', 'false');
 
@@ -19,29 +21,41 @@ export class MemberService {
       urlParams = urlParams.append(options, optionsValue.trim());
     }
 
-    return this.http.get<any>(baseURL + 'api/member/all', {params: urlParams});
+    return this.http.get<any>(baseURL + 'api/member/all', {params: urlParams,  headers: {
+      authorization: this.token 
+    }});
   }
 
   getAllMembers() {
-    return this.http.get<any>(baseURL + 'api/member/all');
+    return this.http.get<any>(baseURL + 'api/member/all', { headers: {
+      authorization: this.token 
+    }});
   }
 
   getMember(id: string) {
     const idParams = new HttpParams().append('id', id);
 
-    return this.http.get<Member>(baseURL + 'api/member', {params: idParams});
+    return this.http.get<Member>(baseURL + 'api/member', {params: idParams,  headers: {
+      authorization: this.token 
+    }});
   }
 
   postMember(member) {
-    return this.http.post<Member>(baseURL + 'api/member', member);
+    return this.http.post<Member>(baseURL + 'api/member', member, { headers: {
+      authorization: this.token 
+    }});
   }
 
   editMember(member, id) {
-    return this.http.put<Member>(baseURL + 'api/member/' + id, member);
+    return this.http.put<Member>(baseURL + 'api/member/' + id, member, { headers: {
+      authorization: this.token 
+    }});
   }
 
   deleteMember(memberId) {
-    return this.http.put<Member>(baseURL + `api/member/delete/` + memberId, null);
+    return this.http.put<Member>(baseURL + `api/member/delete/` + memberId, null, { headers: {
+      authorization: this.token 
+    }});
   }
 
   getTickets(page: string, size: string, options?: string, optionsValue?: string) {
@@ -51,23 +65,33 @@ export class MemberService {
       urlParams = urlParams.append(options, optionsValue.trim());
     }
 
-    return this.http.get<any>(baseURL + 'api/ticket', {params: urlParams});
+    return this.http.get<any>(baseURL + 'api/ticket', {params: urlParams,  headers: {
+      authorization: this.token 
+    }});
   }
 
   getTicket(id) {
-    return this.http.get<any>(baseURL + 'api/ticket/' + id);
+    return this.http.get<any>(baseURL + 'api/ticket/' + id, { headers: {
+      authorization: this.token 
+    }});
   }
 
   postTicket(ticket) {
-    return this.http.post<any>(baseURL + 'api/ticket/', ticket);
+    return this.http.post<any>(baseURL + 'api/ticket/', ticket, { headers: {
+      authorization: this.token 
+    }});
   }
 
   editTicket(ticket) {
-    return this.http.put<any>(baseURL + 'api/ticket/' + ticket.id, ticket);
+    return this.http.put<any>(baseURL + 'api/ticket/' + ticket.id, ticket, { headers: {
+      authorization: this.token 
+    }});
   }
 
   deleteTicket(id) {
-    return this.http.delete<any>(baseURL + 'api/ticket/' + id);
+    return this.http.delete<any>(baseURL + 'api/ticket/' + id, { headers: {
+      authorization: this.token 
+    }});
   }
 
   getDocuments(page: string, size: string, options?: string, optionsValue?: string) {
@@ -77,29 +101,41 @@ export class MemberService {
       urlParams = urlParams.append(options, optionsValue.trim());
     }
 
-    return this.http.get<any>(baseURL + 'api/document', {params: urlParams});
+    return this.http.get<any>(baseURL + 'api/document', {params: urlParams,  headers: {
+      authorization: this.token 
+    }});
   }
 
   getDocument(documentId) {
-    return this.http.get<any>(baseURL + 'api/document/' + documentId);
+    return this.http.get<any>(baseURL + 'api/document/' + documentId, { headers: {
+      authorization: this.token 
+    }});
   }
 
   createDocument(document, members) {
     document.members = members.map(member => { return {id: member.id}; })
-    return this.http.post<any>(baseURL + 'api/document', document);
+    return this.http.post<any>(baseURL + 'api/document', document, { headers: {
+      authorization: this.token 
+    }});
   }
 
   deleteDocument(documentId) {
-    return this.http.put<any>(baseURL + 'api/document/delete/' + documentId, null);
+    return this.http.put<any>(baseURL + 'api/document/delete/' + documentId, null, { headers: {
+      authorization: this.token 
+    }});
   }
 
   updateDocument(document, members) {
     document.members = members.map(member =>  { return {id: member.id}; });
-    return this.http.put<any>(baseURL + 'api/document/' + document.id, document);
+    return this.http.put<any>(baseURL + 'api/document/' + document.id, document, { headers: {
+      authorization: this.token 
+    }});
   }
 
   exportDocument(documentId) {
-    return this.http.get<any>(baseURL + 'api/document/export/' + documentId, { responseType: 'blob' as 'json', });
+    return this.http.get<any>(baseURL + 'api/document/export/' + documentId, { responseType: 'blob' as 'json',  headers: {
+      authorization: this.token 
+    }});
   }
 
   getUsers(page: string, size: string, options?: string, optionsValue?: string) {
@@ -109,22 +145,32 @@ export class MemberService {
       urlParams = urlParams.append(options, optionsValue.trim());
     }
 
-    return this.http.get<any>(baseURL + 'api/user/all', {params: urlParams});
+    return this.http.get<any>(baseURL + 'api/user/all', {params: urlParams, headers: {
+      authorization: this.token 
+    }});
   }
 
   getUser(userId) {
-    return this.http.get<any>(baseURL + 'api/user/' + userId);
+    return this.http.get<any>(baseURL + 'api/user/' + userId,{ headers: {
+      authorization: this.token 
+    }});
   }
 
   createUser(user) {
-    return this.http.post<any>(baseURL + 'api/user/superadmin/create', user);
+    return this.http.post<any>(baseURL + 'api/user/superadmin/create', user, { headers: {
+      authorization: this.token 
+    }});
   }
 
   deleteUser(userId) {
-    return this.http.put<any>(baseURL + 'api/user/superadmin/delete/' + userId, null);
+    return this.http.put<any>(baseURL + 'api/user/superadmin/delete/' + userId, null, { headers: {
+      authorization: this.token 
+    }});
   }
 
   updateUser(user) {
-    return this.http.put<any>(baseURL + 'api/user/superadmin/' + user.id, user);
+    return this.http.put<any>(baseURL + 'api/user/superadmin/' + user.id, user, { headers: {
+      authorization: this.token 
+    }});
   }
 }
