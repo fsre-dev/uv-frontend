@@ -11,7 +11,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-   return this.http.post<any>( baseURL + '/api/user/authenticate', null, {
+   return this.http.post<any>( baseURL + 'api/user/authenticate', null, {
       headers: {
         authorization: 'Basic ' + btoa(username + ':' + password)
       }
@@ -19,6 +19,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.http.get<any>(baseURL + '/api/logout');
+    return this.http.get<any>(baseURL + 'api/logout');
   }
 }
